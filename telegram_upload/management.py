@@ -93,6 +93,7 @@ def upload(files, to, config, delete_on_success, print_file_id, force_file, forw
     # dialogs = client.get_dialogs()
     # to = client.get_entity(to)
     files = filter(lambda file: is_valid_file(file, lambda message: click.echo(message, err=True)), files)
+    files = natsorted(files)
     files = DIRECTORY_MODES[directories](files)
     if directories == 'fail':
         # Validate now
@@ -108,9 +109,6 @@ def upload(files, to, config, delete_on_success, print_file_id, force_file, forw
     if large_files == 'fail':
         # Validate now
         files = list(files)
-
-    if directories == 'recursive':
-        files = natsorted(files)
 
     if album:
         client.send_files_as_album(to, files, delete_on_success, print_file_id, forward)
