@@ -93,8 +93,8 @@ def upload(files, to, config, delete_on_success, print_file_id, force_file, forw
     # dialogs = client.get_dialogs()
     # to = client.get_entity(to)
     files = filter(lambda file: is_valid_file(file, lambda message: click.echo(message, err=True)), files)
-    files = natsorted(files)
     files = DIRECTORY_MODES[directories](files)
+    files = natsorted(files)
     if directories == 'fail':
         # Validate now
         files = list(files)
