@@ -109,7 +109,7 @@ def upload(files, to, config, delete_on_success, print_file_id, force_file, forw
         # Validate now
         files = list(files)
 
-    if directories != 'fail':
+    if directories == 'recursive':
         files = natsorted(files)
 
     if album:
